@@ -1,0 +1,42 @@
+body{
+    display: flex;
+    justify-content: center;
+    font-family: MingLiU_HKSCS-ExtB,sans-serif;
+    letter-spacing: 0.1rem;
+    align-items: center;
+    color: #FFEE88;
+    background-color: #0D0628;
+}
+
+.form{
+    margin-top: 2rem;
+    border: 1px solid #FFEE88;
+    border-radius: 5%;
+
+
+    display: flex;
+    padding: 2rem;
+    line-height: 2rem;
+    justify-content: center;
+}
+
+
+
+.title{
+    display: flex;
+    font-size: 2rem;
+    justify-content: center;
+}
+
+button{
+    font-family: MingLiU_HKSCS-ExtB,sans-serif;
+    font-style: italic;
+    color: #0D0628;
+    background-color: white;
+    text-decoration: none;
+    border: none;
+    font-size: 1.5rem;
+}
+
+
+/* les couleurs sont :FFEE88 E2E8DD 0D0628
