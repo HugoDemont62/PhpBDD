@@ -6,30 +6,27 @@ $BDD = mysqli_connect('localhost:3306',"root","", "projet") or die("Impossible d
 //$resultat=mysqli_query($BDD, "DROP DATABASE IF EXISTS projet");
 //$resultat=mysqli_query($BDD, "CREATE DATABASE projet");
 
-echo "</br>";
-echo $_POST['name'];
-echo "</br>";
-echo $_POST['password'];
-echo "</br>";
-
-
+//echo "</br>";
+//echo $_POST['name'];
+//echo "</br>";
+//echo $_POST['password'];
+//echo "</br>";
+//
+//
+//
+//                                                  Confirmation d'une BDD
+//echo "</br>";
+//if($result) {
+//    echo "Succes";
+//}
+//else{
+//    echo "Echec requete";
+//}
+//echo "</br>";
+//
 
 $SQL = "SELECT name, password FROM projetsql";
 $result = mysqli_query($BDD, $SQL);
-
-
-print_r($result);
-echo "</br>";
-if($result) {
-    echo "Succes";
-}
-else{
-    echo "Echec requete";
-}
-echo "</br>";
-
-
-
 
 
 if(isset($_POST['submit'])) {
@@ -47,45 +44,32 @@ if(isset($_POST['submit'])) {
 
     while($line = mysqli_fetch_array($result)) {
         $tableau[] = array($line['name'],$line['password']);
-        print_r($tableau);
+        //var_dump($tableau);
+
     }
+
+    $username = mysqli_real_escape_string($BDD, $_POST['name']);
+    $password = mysqli_real_escape_string($BDD, $_POST['password']);
+
+    $sql = "SELECT id FROM projetsql WHERE name='$username' and password='$password'";
+    $result = mysqli_query($BDD,$sql);
+    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+
+
+    if(mysqli_num_rows($result) == 1)
+    {
+        header("location: https://hugodemont.fr/"); // Redirecting To Other Page
+    }else
+    {
+        $message='Password Or Name is false';
+
+        echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+    }
+
+    echo "</br>";
+
 
 
 
 
 }
-
-
-// Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
-//if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0) {
-//    // Testons si le fichier n'est pas trop gros
-//    if ($_FILES['screenshot']['size'] <= 1000000) {
-//        // Testons si l'extension est autorisée
-//        $fileInfo = pathinfo($_FILES['screenshot']['name']);
-//        $extension = $fileInfo['extension'];
-//        $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
-//        if (in_array($extension, $allowedExtensions)) {
-//            // On peut valider le fichier et le stocker définitivement
-//            move_uploaded_file($_FILES['screenshot']['tmp_name'], 'uploads/' . basename($_FILES['screenshot']['name']));
-//            echo "L'envoi a bien été effectué !";
-//        }
-//    }
-//}
-//if (isset($_POST['email']) &&  isset($_POST['password'])) {
-//    foreach ($users as $user) {
-//        if (
-//            $user['email'] === $_POST['email'] &&
-//            $user['password'] === $_POST['password']
-//        ) {
-//            $loggedUser = [
-//                'email' => $user['email'],
-//            ];
-//        } else {
-//            $errorMessage = sprintf('Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
-//                $_POST['email'],
-//                $_POST['password']
-//            );
-//        }
-//    }
-//}
-
