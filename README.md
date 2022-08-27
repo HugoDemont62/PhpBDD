@@ -5,6 +5,8 @@
 
 PhpBDD was build with mysqli in PHP, with phpmyadmin Data Base.
 
+-- BDD with mysqli 
+
 We can see different thing: 
 
   -Login authentification
